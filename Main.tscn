@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Bubble.gd" type="Script" id=1]
+[ext_resource path="res://images/BubbleSimple256.png" type="Texture" id=2]
+[ext_resource path="res://images/BubbleSimple512.png" type="Texture" id=3]
+[ext_resource path="res://images/BubbleSimple128.png" type="Texture" id=4]
+[ext_resource path="res://images/BubbleSimple64.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 58.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 29.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 233.002
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 117.004
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Contents" type="Node2D" parent="."]
+
+[node name="QuarterBubble" type="Node2D" parent="Contents"]
+position = Vector2( 158, 153 )
+script = ExtResource( 1 )
+color = Color( 0, 1, 1, 1 )
+radius = 58
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Contents/QuarterBubble"]
+input_pickable = true
+mode = 1
+gravity_scale = 0.0
+
+[node name="Sprite" type="Sprite" parent="Contents/QuarterBubble/RigidBody2D"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Contents/QuarterBubble/RigidBody2D"]
+position = Vector2( 1, 2 )
+shape = SubResource( 3 )
+
+[node name="Contents" type="Node2D" parent="Contents/QuarterBubble"]
+
+[node name="OctoBubble" type="Node2D" parent="Contents"]
+position = Vector2( 124, 383 )
+script = ExtResource( 1 )
+color = Color( 1, 0, 1, 1 )
+radius = 29
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Contents/OctoBubble"]
+input_pickable = true
+mode = 1
+gravity_scale = 0.0
+
+[node name="Sprite" type="Sprite" parent="Contents/OctoBubble/RigidBody2D"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Contents/OctoBubble/RigidBody2D"]
+position = Vector2( 0, 1 )
+shape = SubResource( 4 )
+
+[node name="Contents" type="Node2D" parent="Contents/OctoBubble"]
+
+[node name="FullBubble" type="Node2D" parent="Contents"]
+position = Vector2( 500, 298 )
+script = ExtResource( 1 )
+color = Color( 1, 1, 1, 1 )
+radius = 233
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Contents/FullBubble"]
+input_pickable = true
+mode = 1
+gravity_scale = 0.0
+
+[node name="Sprite" type="Sprite" parent="Contents/FullBubble/RigidBody2D"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Contents/FullBubble/RigidBody2D"]
+position = Vector2( 3, 8 )
+shape = SubResource( 2 )
+
+[node name="Contents" type="Node2D" parent="Contents/FullBubble"]
+
+[node name="HalfBubble" type="Node2D" parent="Contents"]
+position = Vector2( 870, 369 )
+script = ExtResource( 1 )
+color = Color( 1, 1, 1, 1 )
+radius = 117
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Contents/HalfBubble"]
+input_pickable = true
+mode = 1
+gravity_scale = 0.0
+
+[node name="Sprite" type="Sprite" parent="Contents/HalfBubble/RigidBody2D"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Contents/HalfBubble/RigidBody2D"]
+position = Vector2( 0, 5 )
+shape = SubResource( 1 )
+
+[node name="Contents" type="Node2D" parent="Contents/HalfBubble"]
+
+[connection signal="mouse_entered" from="Contents/QuarterBubble/RigidBody2D" to="Contents/QuarterBubble" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Contents/QuarterBubble/RigidBody2D" to="Contents/QuarterBubble" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Contents/OctoBubble/RigidBody2D" to="Contents/OctoBubble" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Contents/OctoBubble/RigidBody2D" to="Contents/OctoBubble" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Contents/FullBubble/RigidBody2D" to="Contents/FullBubble" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Contents/FullBubble/RigidBody2D" to="Contents/FullBubble" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Contents/HalfBubble/RigidBody2D" to="Contents/HalfBubble" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Contents/HalfBubble/RigidBody2D" to="Contents/HalfBubble" method="_on_Area2D_mouse_exited"]
